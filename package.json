@@ -2,10 +2,21 @@
   "name": "pixitest",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "K0rdan",
+  "license": "ISC",
+  "repository": {
+    "url": "https://github.com/K0rdan/PixiTest.git"
   },
-  "author": "",
-  "license": "ISC"
+  "main": "/src/index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4"
+  }
 }
