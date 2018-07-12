@@ -7,7 +7,7 @@
   "repository": {
     "url": "https://github.com/K0rdan/PixiTest.git"
   },
-  "main": "/src/index.js",
+  "main": "./src/index.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -15,8 +15,15 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "pixi.js": "^4.8.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4"
+  },
+  "devDependencies": {
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "prettier": "^1.13.7"
   }
 }

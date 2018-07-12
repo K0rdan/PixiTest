@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "es6",
+    "baseUrl": "./src/",
+    "paths": {
+      "*": ["*"],
+      "components/*": ["./src/components/*"]
+    }
+  },
+  "exclude": ["node_modules", "public"]
+}
