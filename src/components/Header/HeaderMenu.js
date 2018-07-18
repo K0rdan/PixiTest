@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderMenuButton from "components/HeaderMenuButton";
+import HeaderMenuButton from "components/Header/HeaderMenuButton";
 
 export const HeaderMenu = () => (
   <menu>
