@@ -1,12 +1,12 @@
-import App from "components/App";
-import Header from "components/Header";
+import App from 'components/App';
+import Header from 'components/Header';
 
-export * from "components/App";
-export * from "components/Header";
+export * from 'components/App';
+export * from 'components/Header';
 
 export const Components = {
   App,
-  Header
+  Header,
 };
 
 export default Components;

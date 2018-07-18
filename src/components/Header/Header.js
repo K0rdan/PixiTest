@@ -1,5 +1,5 @@
-import React from "react";
-import HeaderMenu from "components/Header/HeaderMenu";
+import React from 'react';
+import HeaderMenu from 'components/Header/HeaderMenu';
 
 export const Header = () => (
   <header>
