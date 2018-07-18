@@ -19,6 +19,7 @@
     "apollo-link-state": "^0.4.1",
     "graphql": "^0.13.2",
     "pixi.js": "^4.8.1",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-apollo": "^2.1.9",
     "react-devtools": "^3.2.3",
