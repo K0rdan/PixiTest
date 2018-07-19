@@ -6,3 +6,7 @@ menu {
   width: 100vw;
   min-width: 500px;
 }
+
+.HeaderMenuItem {
+  list-style: none;
+}

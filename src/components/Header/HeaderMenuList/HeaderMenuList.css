@@ -1,11 +1,5 @@
-ul {
+.MenuList {
   margin: 0;
   padding: 0;
-  height: 100%;
-}
-
-li {
-  display: inline-block;
-  width: 30vw;
-  height: 100%;
+  list-style: none;
 }

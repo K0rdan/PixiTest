@@ -3,15 +3,21 @@ import HeaderMenuButton from 'components/Header/HeaderMenuButton';
 
 import 'components/Header/HeaderMenuList/HeaderMenuList.css';
 
+const commonButtonStyles = {
+  height: '100%',
+};
+
 export const HeaderMenuList = () => (
-  <ul>
-    <li>
-      <HeaderMenuButton value="TEST" styles={{ height: '100%' }} />
-    </li>
-    <li>
-      <HeaderMenuButton value="TEST2" />
-    </li>
-  </ul>
+  <li style={{ 'list-style': 'none' }}>
+    <ul className="MenuList">
+      <li className="MenuListItem">
+        <HeaderMenuButton value="File" styles={commonButtonStyles} />
+      </li>
+      <li className="MenuListItem">
+        <HeaderMenuButton value="TEST2" styles={commonButtonStyles} />
+      </li>
+    </ul>
+  </li>
 );
 
 export default HeaderMenuList;

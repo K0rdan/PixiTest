@@ -5,7 +5,7 @@ import 'components/Header/HeaderMenu/HeaderMenu.css';
 
 export const HeaderMenu = () => (
   <menu>
-    <HeaderMenuList />
+    <HeaderMenuList className="HeaderMenuItem" />
   </menu>
 );
 
