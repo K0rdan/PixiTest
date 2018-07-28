@@ -1,5 +1,11 @@
 import React from 'react';
-import { Drawer } from '@material-ui/core';
+import {
+  Drawer,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from '@material-ui/core';
+import { MoveToInbox } from '@material-ui/icons';
 import Header from 'components/Header/Header';
 import Content from 'components/Content/Content';
 
@@ -37,6 +43,12 @@ export class App extends React.Component {
         />
         <Drawer variant={'persistent'} open={drawer.open}>
           <div style={{ width: drawer.width }}>TEST</div>
+          <ListItem button>
+            <ListItemIcon>
+              <MoveToInbox />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
+          </ListItem>
         </Drawer>
         <Content drawer={drawer} />
       </div>
