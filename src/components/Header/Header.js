@@ -11,7 +11,7 @@ const calculateAppBarStyles = ({ isOpen }) => ({
   transitionDuration: `${isOpen ? 225 : 0}ms`,
 });
 
-export const Header = ({ data, toggleDrawer }) => {
+const Header = ({ data, toggleDrawer }) => {
   const { drawer } = data;
   const appBarStyles = calculateAppBarStyles(drawer);
   return (
@@ -27,8 +27,8 @@ export const Header = ({ data, toggleDrawer }) => {
 };
 
 Header.propTypes = {
-  data: PropTypes.object.isRequired,
-  toggleDrawer: PropTypes.func.isRequired,
+  data: PropTypes.object,
+  toggleDrawer: PropTypes.func,
 };
 
 export default compose(
