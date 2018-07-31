@@ -1,5 +1,6 @@
-export const Defaults = {
-  __typename: 'routecache',
-};
+import { merge } from 'lodash';
+import DrawerDefaults from 'gql/defaults/drawer';
 
-export default Defaults;
+export const defaults = merge(DrawerDefaults);
+
+export default defaults;
