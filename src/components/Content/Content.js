@@ -1,13 +1,16 @@
 import React from 'react';
+import { compose } from 'react-apollo';
+import { queries as DrawerQueries } from 'gql/Drawer/index';
 
 import 'components/Content/Content.css';
 
-const calculateContentStyles = ({ width, open }) => ({
-  marginLeft: `${width}px`,
-  transitionDuration: `${open ? 225 : 0}ms`
+const calculateContentStyles = ({ isOpen }) => ({
+  marginLeft: `${isOpen ? 160 : 0}px`,
+  transitionDuration: `${isOpen ? 225 : 0}ms`,
 });
 
-export const Content = ({ drawer }) => {
+const Content = ({ data }) => {
+  const { drawer } = data;
   const contentStyles = calculateContentStyles(drawer);
   return (
     <div className="ContentWrapper" style={contentStyles}>
@@ -103,4 +106,4 @@ export const Content = ({ drawer }) => {
   );
 };
 
-export default Content;
+export default compose(DrawerQueries.withDrawerQuery)(Content);

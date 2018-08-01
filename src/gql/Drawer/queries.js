@@ -11,19 +11,9 @@ export const DRAWER_QUERY = gql`
 `;
 export const withDrawerQuery = graphql(DRAWER_QUERY);
 
-export const DRAWER_ISOPEN = gql`
-  query Drawer {
-    drawer @client {
-      isOpen
-      __typename
-    }
-  }
-`;
-
-export const drawerQueries = {
+export const queries = {
   DRAWER_QUERY,
   withDrawerQuery,
-  DRAWER_ISOPEN,
 };
 
-export default drawerQueries;
+export default queries;

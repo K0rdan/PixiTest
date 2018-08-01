@@ -3,8 +3,10 @@ import { compose } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import { drawerQueries } from 'gql/queries/index';
-import { drawerMutations } from 'gql/mutations/index';
+import {
+  queries as DrawerQueries,
+  mutations as DrawerMutations,
+} from 'gql/Drawer/index';
 
 const calculateAppBarStyles = ({ isOpen }) => ({
   width: `calc(100% - ${isOpen ? 160 : 0}px)`,
@@ -32,6 +34,6 @@ Header.propTypes = {
 };
 
 export default compose(
-  drawerQueries.withDrawerQuery,
-  drawerMutations.withToggleDrawerMutation,
+  DrawerQueries.withDrawerQuery,
+  DrawerMutations.withToggleDrawerMutation,
 )(Header);

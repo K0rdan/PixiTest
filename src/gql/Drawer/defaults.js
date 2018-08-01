@@ -1,8 +1,8 @@
-export const DrawerDefaults = {
+export const defaults = {
   drawer: {
     isOpen: false,
     __typename: 'Drawer',
   },
 };
 
-export default DrawerDefaults;
+export default defaults;

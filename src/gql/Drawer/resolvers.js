@@ -1,17 +1,8 @@
-import gql from 'graphql-tag';
+import { DRAWER_QUERY } from 'gql/Drawer/queries';
 
-const DRAWER_ISOPEN = gql`
-  query Drawer {
-    drawer @client {
-      isOpen
-      __typename
-    }
-  }
-`;
-
-export const DrawerResolvers = {
+export const resolvers = {
   toggleDrawer: (_, variables, { cache }) => {
-    const { drawer } = cache.readQuery({ query: DRAWER_ISOPEN });
+    const { drawer } = cache.readQuery({ query: DRAWER_QUERY });
     console.log('RESOLVERS, DRAWER, TOGGLEDRAWER, drawer', drawer.isOpen);
 
     if (drawer) {
@@ -31,4 +22,4 @@ export const DrawerResolvers = {
   },
 };
 
-export default DrawerResolvers;
+export default resolvers;

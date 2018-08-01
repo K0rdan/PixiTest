@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
-export const toggleDrawerMutation = gql`
+const toggleDrawerMutation = gql`
   mutation ToggleDrawer {
     toggleDrawer @client {
       isOpen
@@ -13,9 +13,8 @@ export const withToggleDrawerMutation = graphql(toggleDrawerMutation, {
   props: ({ mutate }) => ({ toggleDrawer: mutate }),
 });
 
-export const drawerMutations = {
-  toggleDrawerMutation,
+export const mutations = {
   withToggleDrawerMutation,
 };
 
-export default drawerMutations;
+export default mutations;
