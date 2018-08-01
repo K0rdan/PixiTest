@@ -7,10 +7,13 @@ import {
   queries as DrawerQueries,
   mutations as DrawerMutations,
 } from 'gql/Drawer/index';
+import utils from 'utils/index';
 
 const calculateAppBarStyles = ({ isOpen }) => ({
-  width: `calc(100% - ${isOpen ? 160 : 0}px)`,
-  transitionDuration: `${isOpen ? 225 : 0}ms`,
+  width: `calc(100% - ${isOpen ? utils.Drawer.styles.width : 0}px)`,
+  transitionDuration: `${
+    isOpen ? utils.Drawer.styles.transitionDuration : 0
+  }ms`,
 });
 
 const Header = ({ data, toggleDrawer }) => {
