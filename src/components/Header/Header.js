@@ -1,19 +1,21 @@
 import React from 'react';
+import { compose } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import {
+  queries as DrawerQueries,
+  mutations as DrawerMutations,
+} from 'gql/Drawer/index';
 
-import 'components/Header/Header.css';
-
-const calculateAppBarStyles = ({ width, open }) => ({
-  width: `calc(100% - ${width}px)`,
-  transitionDuration: `${open ? 225 : 0}ms`,
+const calculateAppBarStyles = ({ isOpen }) => ({
+  width: `calc(100% - ${isOpen ? 160 : 0}px)`,
+  transitionDuration: `${isOpen ? 225 : 0}ms`,
 });
 
-export const Header = ({ drawer }) => {
-  const { drawerState, toggleDrawer } = drawer;
-  const appBarStyles = calculateAppBarStyles(drawerState);
-
+const Header = ({ data, toggleDrawer }) => {
+  const { drawer } = data;
+  const appBarStyles = calculateAppBarStyles(drawer);
   return (
     <AppBar className="AppBarWrapper" style={appBarStyles}>
       <Toolbar>
@@ -27,13 +29,11 @@ export const Header = ({ drawer }) => {
 };
 
 Header.propTypes = {
-  drawer: PropTypes.shape({
-    drawerState: PropTypes.shape({
-      open: PropTypes.bool.isRequired,
-      width: PropTypes.number.isRequired,
-    }),
-    toggleDrawer: PropTypes.func.isRequired,
-  }),
+  data: PropTypes.object,
+  toggleDrawer: PropTypes.func,
 };
 
-export default Header;
+export default compose(
+  DrawerQueries.withDrawerQuery,
+  DrawerMutations.withToggleDrawerMutation,
+)(Header);
