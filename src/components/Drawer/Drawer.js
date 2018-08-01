@@ -3,23 +3,34 @@ import { compose } from 'react-apollo';
 import PropTypes from 'prop-types';
 import {
   Drawer as MaterialDrawer,
+  Typography,
   ListItem,
   ListItemIcon,
   ListItemText,
 } from '@material-ui/core';
-import { MoveToInbox } from '@material-ui/icons';
+import { FolderOpen, Save } from '@material-ui/icons';
 import { queries as DrawerQueries } from 'gql/Drawer/index';
+
+import 'components/Drawer/Drawer.css';
 
 const Drawer = ({ data }) => {
   const { drawer } = data;
   return (
     <MaterialDrawer variant={'persistent'} open={drawer.isOpen}>
-      <div>TEST</div>
-      <ListItem button>
+      <Typography className="SectionTitle" variant="title">
+        Project
+      </Typography>
+      <ListItem button dense>
         <ListItemIcon>
-          <MoveToInbox />
+          <FolderOpen />
         </ListItemIcon>
-        <ListItemText primary="Inbox" />
+        <ListItemText primary="Open" />
+      </ListItem>
+      <ListItem button dense>
+        <ListItemIcon>
+          <Save />
+        </ListItemIcon>
+        <ListItemText primary="Save" />
       </ListItem>
     </MaterialDrawer>
   );

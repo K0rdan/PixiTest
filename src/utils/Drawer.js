@@ -1,5 +1,5 @@
 const styles = {
-  width: 160,
+  width: 150,
   transitionDuration: 225,
 };
 
