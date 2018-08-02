@@ -12,8 +12,8 @@ const calculateContentStyles = ({ isOpen }) => ({
   }ms`,
 });
 
-const Content = ({ data }) => {
-  const { drawer } = data;
+const Content = ({ drawerData }) => {
+  const { drawer } = drawerData;
   const contentStyles = calculateContentStyles(drawer);
   return (
     <div className="ContentWrapper" style={contentStyles}>

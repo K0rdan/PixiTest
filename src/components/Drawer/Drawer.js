@@ -10,11 +10,16 @@ import {
 } from '@material-ui/core';
 import { FolderOpen, Save } from '@material-ui/icons';
 import { queries as DrawerQueries } from 'gql/Drawer/index';
+import {
+  queries as ProjectQueries,
+  mutations as ProjectMutations,
+} from 'gql/Project/index';
 
 import 'components/Drawer/Drawer.css';
 
-const Drawer = ({ data }) => {
-  const { drawer } = data;
+const Drawer = ({ drawerData, projectData, openProject }) => {
+  const { drawer } = drawerData;
+  const { project } = projectData;
   return (
     <MaterialDrawer variant={'persistent'} open={drawer.isOpen}>
       <Typography className="SectionTitle" variant="title">
@@ -26,7 +31,7 @@ const Drawer = ({ data }) => {
         </ListItemIcon>
         <ListItemText primary="Open" />
       </ListItem>
-      <ListItem button dense>
+      <ListItem button dense disabled={!project.isOpen}>
         <ListItemIcon>
           <Save />
         </ListItemIcon>
@@ -35,9 +40,13 @@ const Drawer = ({ data }) => {
     </MaterialDrawer>
   );
 };
-
 Drawer.propTypes = {
-  data: PropTypes.object,
+  drawerData: PropTypes.object,
+  projectData: PropTypes.object,
 };
 
-export default compose(DrawerQueries.withDrawerQuery)(Drawer);
+export default compose(
+  DrawerQueries.withDrawerQuery,
+  ProjectQueries.withProjectQuery,
+  ProjectMutations.withOpenProjectMutation,
+)(Drawer);

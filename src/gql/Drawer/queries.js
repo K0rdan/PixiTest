@@ -9,7 +9,7 @@ export const DRAWER_QUERY = gql`
     }
   }
 `;
-export const withDrawerQuery = graphql(DRAWER_QUERY);
+export const withDrawerQuery = graphql(DRAWER_QUERY, { name: 'drawerData' });
 
 export const queries = {
   DRAWER_QUERY,

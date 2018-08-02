@@ -5,7 +5,6 @@ const toggleDrawerMutation = gql`
   mutation ToggleDrawer {
     toggleDrawer @client {
       isOpen
-      width
     }
   }
 `;

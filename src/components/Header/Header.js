@@ -7,6 +7,7 @@ import {
   queries as DrawerQueries,
   mutations as DrawerMutations,
 } from 'gql/Drawer/index';
+import { queries as ProjectQueries } from 'gql/Project/index';
 import utils from 'utils/index';
 
 const calculateAppBarStyles = ({ isOpen }) => ({
@@ -16,8 +17,9 @@ const calculateAppBarStyles = ({ isOpen }) => ({
   }ms`,
 });
 
-const Header = ({ data, toggleDrawer }) => {
-  const { drawer } = data;
+const Header = ({ drawerData, toggleDrawer, projectData }) => {
+  const { drawer } = drawerData;
+  const { project } = projectData;
   const appBarStyles = calculateAppBarStyles(drawer);
   return (
     <AppBar className="AppBarWrapper" style={appBarStyles}>
@@ -25,18 +27,22 @@ const Header = ({ data, toggleDrawer }) => {
         <IconButton onClick={toggleDrawer}>
           <MenuIcon />
         </IconButton>
-        <Typography variant="title">TEST</Typography>
+        <Typography variant="title">
+          {project.isOpen ? project.name : 'Welcome in Online RPG Editor !'}
+        </Typography>
       </Toolbar>
     </AppBar>
   );
 };
 
 Header.propTypes = {
-  data: PropTypes.object,
+  drawerData: PropTypes.object,
   toggleDrawer: PropTypes.func,
+  projectData: PropTypes.object,
 };
 
 export default compose(
   DrawerQueries.withDrawerQuery,
   DrawerMutations.withToggleDrawerMutation,
+  ProjectQueries.withProjectQuery,
 )(Header);
