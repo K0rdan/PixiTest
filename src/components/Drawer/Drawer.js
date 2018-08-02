@@ -1,6 +1,7 @@
 import React from 'react';
 import { compose } from 'react-apollo';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 import {
   Drawer as MaterialDrawer,
   Typography,
@@ -17,6 +18,22 @@ import {
 
 import 'components/Drawer/Drawer.css';
 
+const loadProject = e => {
+  e.preventDefault();
+  const file = get(e, 'target.files[0]', null);
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const jsonRes = JSON.parse(reader.result);
+    };
+    reader.readAsText(file);
+  } else {
+    // TODO : Display an alert
+  }
+};
+
 const Drawer = ({ drawerData, projectData, openProject }) => {
   const { drawer } = drawerData;
   const { project } = projectData;
@@ -26,10 +43,19 @@ const Drawer = ({ drawerData, projectData, openProject }) => {
         Project
       </Typography>
       <ListItem button dense>
+        <input
+          ref={input => (this.inputLoadProject = input)}
+          type="file"
+          style={{ display: 'none' }}
+          onChange={loadProject}
+        />
         <ListItemIcon>
           <FolderOpen />
         </ListItemIcon>
-        <ListItemText primary="Open" />
+        <ListItemText
+          primary="Open"
+          onClick={() => this.inputLoadProject.click()}
+        />
       </ListItem>
       <ListItem button dense disabled={!project.isOpen}>
         <ListItemIcon>
