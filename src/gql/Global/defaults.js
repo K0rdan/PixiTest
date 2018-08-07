@@ -1,10 +1,8 @@
 export const defaults = {
-  project: {
+  global: {
     loading: false,
     loadingText: null,
-    isOpen: false,
-    name: '',
-    __typename: 'Project',
+    __typename: 'Global',
   },
 };
 

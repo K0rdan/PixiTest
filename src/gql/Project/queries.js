@@ -4,6 +4,8 @@ import { graphql } from 'react-apollo';
 export const PROJECT_QUERY = gql`
   query Project {
     project @client {
+      loading
+      loadingText
       isOpen
       name
       __typename
