@@ -15,28 +15,33 @@ import {
   queries as ProjectQueries,
   mutations as ProjectMutations,
 } from 'gql/Project/index';
-
 import 'components/Drawer/Drawer.css';
 
-const loadProject = e => {
-  e.preventDefault();
-  const file = get(e, 'target.files[0]', null);
-
-  if (file) {
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      const jsonRes = JSON.parse(reader.result);
-    };
-    reader.readAsText(file);
-  } else {
-    // TODO : Display an alert
-  }
-};
-
-const Drawer = ({ drawerData, projectData, openProject }) => {
+const Drawer = ({
+  drawerData,
+  projectData,
+  startLoadingProject,
+  loadProject,
+}) => {
   const { drawer } = drawerData;
   const { project } = projectData;
+
+  const openNewProject = e => {
+    e.preventDefault();
+    const file = get(e, 'target.files[0]', null);
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadstart = () => startLoadingProject();
+      reader.onload = () => {
+        loadProject(JSON.parse(reader.result));
+      };
+      reader.readAsText(file);
+    } else {
+      // TODO : Display an alert
+    }
+  };
+
   return (
     <MaterialDrawer variant={'persistent'} open={drawer.isOpen}>
       <Typography className="SectionTitle" variant="title">
@@ -47,7 +52,7 @@ const Drawer = ({ drawerData, projectData, openProject }) => {
           ref={input => (this.inputLoadProject = input)}
           type="file"
           style={{ display: 'none' }}
-          onChange={loadProject}
+          onChange={openNewProject}
         />
         <ListItemIcon>
           <FolderOpen />
@@ -66,13 +71,18 @@ const Drawer = ({ drawerData, projectData, openProject }) => {
     </MaterialDrawer>
   );
 };
+
 Drawer.propTypes = {
   drawerData: PropTypes.object,
   projectData: PropTypes.object,
+  isLoadingProject: PropTypes.func,
+  openProject: PropTypes.func,
 };
 
 export default compose(
   DrawerQueries.withDrawerQuery,
   ProjectQueries.withProjectQuery,
   ProjectMutations.withOpenProjectMutation,
+  ProjectMutations.withStartLoadingProjectMutation,
+  ProjectMutations.withLoadProjectMutation,
 )(Drawer);

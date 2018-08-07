@@ -1,14 +1,25 @@
 import React from 'react';
-import { Header, Drawer, Content } from 'components/index';
+import { compose } from 'react-apollo';
+import PropTypes from 'prop-types';
+import { Header, Drawer, Content, Loader } from 'components/index';
+import { queries as globalQueries } from 'gql/Global';
 
 import 'components/App/App.css';
 
-export const App = () => (
-  <div className="App">
-    <Header />
-    <Drawer />
-    <Content />
-  </div>
-);
+export const App = ({ globalData }) => {
+  const { global } = globalData;
+  return (
+    <div className="App">
+      <Header />
+      <Drawer />
+      <Content />
+      {global.loading ? <Loader>{global.loadingText}</Loader> : null}
+    </div>
+  );
+};
 
-export default App;
+App.propTypes = {
+  globalData: PropTypes.object,
+};
+
+export default compose(globalQueries.withGlobalQuery)(App);
