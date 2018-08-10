@@ -8,21 +8,14 @@ import {
   mutations as DrawerMutations,
 } from 'gql/Drawer/index';
 import { queries as ProjectQueries } from 'gql/Project/index';
-import utils from 'utils/index';
+import withStyle from 'components/Header/withStyle';
 
-const calculateAppBarStyles = ({ isOpen }) => ({
-  width: `calc(100% - ${isOpen ? utils.Drawer.styles.width : 0}px)`,
-  transitionDuration: `${
-    isOpen ? utils.Drawer.styles.transitionDuration : 0
-  }ms`,
-});
-
-const Header = ({ drawerData, toggleDrawer, projectData }) => {
-  const { drawer } = drawerData;
+const Header = props => {
+  const { classes, toggleDrawer, projectData } = props;
   const { project } = projectData;
-  const appBarStyles = calculateAppBarStyles(drawer);
+  console.log(props);
   return (
-    <AppBar className="AppBarWrapper" style={appBarStyles}>
+    <AppBar classes={classes}>
       <Toolbar>
         <IconButton onClick={toggleDrawer}>
           <MenuIcon />
@@ -36,6 +29,7 @@ const Header = ({ drawerData, toggleDrawer, projectData }) => {
 };
 
 Header.propTypes = {
+  classes: PropTypes.object.isRequired,
   drawerData: PropTypes.object,
   toggleDrawer: PropTypes.func,
   projectData: PropTypes.object,
@@ -45,4 +39,5 @@ export default compose(
   DrawerQueries.withDrawerQuery,
   DrawerMutations.withToggleDrawerMutation,
   ProjectQueries.withProjectQuery,
+  withStyle,
 )(Header);
