@@ -10,10 +10,8 @@ import {
 import { queries as ProjectQueries } from 'gql/Project/index';
 import withStyle from 'components/Header/withStyle';
 
-const Header = props => {
-  const { classes, toggleDrawer, projectData } = props;
+const Header = ({ classes, toggleDrawer, projectData }) => {
   const { project } = projectData;
-  console.log(props);
   return (
     <AppBar classes={classes}>
       <Toolbar>

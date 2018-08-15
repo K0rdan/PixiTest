@@ -1,22 +1,13 @@
 import React from 'react';
 import { compose } from 'react-apollo';
+import { Paper } from '@material-ui/core';
+import classNames from 'classnames';
 import { queries as DrawerQueries } from 'gql/Drawer/index';
-import utils from 'utils/index';
+import withStyle from 'components/Content/withStyle';
 
-import 'components/Content/Content.css';
-
-const calculateContentStyles = ({ isOpen }) => ({
-  marginLeft: `${isOpen ? utils.Drawer.styles.width : 0}px`,
-  transitionDuration: `${
-    isOpen ? utils.Drawer.styles.transitionDuration : 0
-  }ms`,
-});
-
-const Content = ({ drawerData }) => {
-  const { drawer } = drawerData;
-  const contentStyles = calculateContentStyles(drawer);
+const Content = ({ classes }) => {
   return (
-    <div className="ContentWrapper" style={contentStyles}>
+    <Paper className={classNames(classes.content)}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquet
       nisl sit amet mauris efficitur, in tincidunt elit fringilla. Sed sed nisl
       non justo rutrum dictum eget consequat arcu. Maecenas lectus urna, maximus
@@ -105,8 +96,11 @@ const Content = ({ drawerData }) => {
       lectus. Sed tristique est at diam imperdiet feugiat. Aenean rutrum massa
       quam, nec auctor enim molestie at. Donec vel purus elit. Suspendisse
       sagittis malesuada tortor eget ultrices.
-    </div>
+    </Paper>
   );
 };
 
-export default compose(DrawerQueries.withDrawerQuery)(Content);
+export default compose(
+  DrawerQueries.withDrawerQuery,
+  withStyle,
+)(Content);

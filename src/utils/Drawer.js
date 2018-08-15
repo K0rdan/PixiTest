@@ -1,10 +1,17 @@
-const styles = {
-  width: 150,
-  transitionDuration: 225,
+export const getWidth = (isDrawerOpen, isSmall) => {
+  if (isDrawerOpen) {
+    if (isSmall === true) {
+      return 135;
+    } else {
+      return 150;
+    }
+  } else {
+    return 0;
+  }
 };
 
 export const Drawer = {
-  styles,
+  getWidth,
 };
 
 export default Drawer;
